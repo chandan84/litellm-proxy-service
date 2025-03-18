@@ -1,1 +1,22 @@
+model:
+  - model_name: cline-gpt
+    litellm_params:
+      model: gpt-3.5-turbo
+      api_key: ${OPENAI_API_KEY}
+      headers:
+        X-Custom-Source: ${CUSTOM_SOURCE}
+        X-Request-ID: ${CURRENT_REQUEST_ID}
 
+  - model_name: cline-claude
+    litellm_params:
+      model: claude-2
+      api_key: ${ANTHROPIC_API_KEY}
+      headers:
+        X-Custom-Source: ${CUSTOM_SOURCE}
+        X-Request-ID: ${CURRENT_REQUEST_ID}
+
+litellm_settings:
+  drop_params: True
+  set_verbose: True
+  environment_variables:
+    - CURRENT_REQUEST_ID  # Will be populated from request headers
